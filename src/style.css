@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: 210 20% 5%;
+  --foreground: 200 15% 88%;
+
+  --panel-border: 210 18% 16%;
+
+  --primary: 190 95% 55%;        /* signal cyan - 데이터 라인 */
+  --primary-foreground: 210 30% 6%;
+
+  --accent: 28 95% 58%;          /* amber - 경고/시그널 */
+  --accent-foreground: 210 30% 6%;
+
+  --ok: 152 60% 45%;             /* 가동 정상 */
+  --warn: 42 95% 55%;            /* 경고 */
+  --danger: 4 85% 58%;           /* 정지/알람 */
+
+  --muted: 210 16% 55%;
+  --muted-foreground: 210 12% 45%;
+
+  --card: 212 22% 9%;
+  --card-foreground: 200 15% 88%;
+  --border: 210 18% 16%;
+  --input: 210 18% 16%;
+  --ring: 190 95% 55%;
+
+  --radius: 0.5rem;
+
+  --font-display: 'Rajdhani', 'Pretendard', sans-serif;
+  --font-body: 'Pretendard', 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', 'D2Coding', monospace;
+}
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-ok: hsl(var(--ok));
+  --color-warn: hsl(var(--warn));
+  --color-danger: hsl(var(--danger));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    color-scheme: dark;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-body);
+    background-image:
+      radial-gradient(circle at 100% 0%, hsl(190 95% 55% / 0.06), transparent 40%),
+      radial-gradient(circle at 0% 100%, hsl(28 95% 58% / 0.05), transparent 40%);
+    background-attachment: fixed;
+  }
+}
+
+@layer utilities {
+  .font-display { font-family: var(--font-display); font-weight: 600; letter-spacing: 0.02em; }
+  .font-mono-tabular { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+  .grid-fade {
+    background-image:
+      linear-gradient(hsl(var(--border) / 0.5) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border) / 0.5) 1px, transparent 1px);
+    background-size: 28px 28px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 0%, black 40%, transparent 100%);
+  }
+
+  .panel {
+    @apply bg-card border border-border rounded-lg;
+    box-shadow: 0 0 0 1px hsl(var(--panel-border) / 0.4) inset, 0 8px 30px -12px rgb(0 0 0 / 0.6);
+  }
+
+  .status-dot {
+    box-shadow: 0 0 8px 1px currentColor;
+  }
+
+  .scanline {
+    position: relative;
+    overflow: hidden;
+  }
+  .scanline::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent, hsl(var(--primary) / 0.06), transparent);
+    animation: scan 5s linear infinite;
+  }
+  @keyframes scan {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+  }
+}
