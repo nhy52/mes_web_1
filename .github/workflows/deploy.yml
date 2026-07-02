@@ -21,7 +21,12 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
+          cache: npm
+      # Pages를 GitHub Actions 소스로 자동 활성화 (Settings에서 수동으로 켤 필요 없음)
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
       - run: npm ci
       - run: npm run build
       # 히스토리 모드 SPA에서 새로고침/직접접속 시 404 나는 것을 우회 (404.html = 앱 진입점)
