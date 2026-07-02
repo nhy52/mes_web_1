@@ -27,7 +27,9 @@ jobs:
       - uses: actions/configure-pages@v5
         with:
           enablement: true
-      - run: npm ci
+      # npm ci 대신 npm install 사용: Windows에서 생성된 lockfile과 Linux CI 간
+      # 플랫폼별 네이티브 패키지(rolldown/lightningcss 등) 불일치를 자동으로 보정한다.
+      - run: npm install --no-audit --no-fund
       - run: npm run build
       # 히스토리 모드 SPA에서 새로고침/직접접속 시 404 나는 것을 우회 (404.html = 앱 진입점)
       - run: cp dist/index.html dist/404.html
