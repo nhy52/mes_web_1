@@ -1,5 +1,7 @@
 # FabSight MES · 실시간 데이터 분석 대시보드 (포트폴리오)
 
+🔗 **라이브 데모:** https://mes-web-1.vercel.app/
+
 반도체/디스플레이 팹의 MES(Manufacturing Execution System)를 모티브로 한 개인 포트폴리오 프로젝트입니다.
 대용량 시계열 데이터 시각화(SciChart.js)와 3D 설비 배치 뷰(Three.js)를 중심으로 구성했습니다.
 

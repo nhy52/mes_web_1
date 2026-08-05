@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { RouterLink, useRoute } from 'vue-router'
-import { LayoutGrid, LineChart, Box, Radio } from 'lucide-vue-next'
+import { LayoutGrid, LineChart, Box, Radio, Thermometer, Grid2x2 } from 'lucide-vue-next'
 import { cn } from '@/lib/utils'
 
 const route = useRoute()
@@ -8,6 +8,8 @@ const route = useRoute()
 const nav = [
   { to: '/', label: '대시보드', icon: LayoutGrid },
   { to: '/analysis', label: '데이터 분석', icon: LineChart },
+  { to: '/thermal', label: '센서 온도 라인', icon: Thermometer },
+  { to: '/wafer', label: '웨이퍼 열지도', icon: Grid2x2 },
   { to: '/equipment', label: '설비 3D 뷰', icon: Box },
 ]
 </script>
